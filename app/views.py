@@ -6,6 +6,7 @@ from .forms import LoginForm
 from .models import *
 
 
+#首页
 @app.route('/')
 def index():
     if session.get('user'):
