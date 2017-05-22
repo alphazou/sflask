@@ -6,10 +6,9 @@ from wtforms.validators import DataRequired, Length, Email
 
 class LoginForm(FlaskForm):
 
-    email = StringField(u'邮箱',
+    name_or_email = StringField(u'用户名或邮箱',
                         validators=[DataRequired(message=u'邮箱不能为空'),
-                                    Length(1, 64),
-                                    Email(message=u'请输入有效邮箱地址')])
+                                    Length(1, 64)])
     password = PasswordField(u'密码',
                              validators=[DataRequired(message=u'密码不能为空'),])
     submit = SubmitField(u'登录')
