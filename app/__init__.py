@@ -6,6 +6,9 @@ from flask_script import Manager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
 
+from flask_mail import Mail
+
+
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
@@ -14,6 +17,7 @@ manager = Manager(app)
 db = SQLAlchemy(app)
 migrage = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
+mail = Mail(app)
 
 from app import views
 

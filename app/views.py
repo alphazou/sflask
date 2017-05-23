@@ -1,16 +1,21 @@
-from app import app
+from app import app, mail
 from flask import request, render_template, jsonify, \
     flash, url_for, current_app, g, redirect, session
 import time, datetime
 from .forms import LoginForm
 from .models import *
-
+from flask_mail import Message
+from threading import Thread
 
 #首页
 @app.route('/')
 def index():
     if session.get('user'):
         # flash('{}，你已登录'.format(session['user']))
+        # send_email('nx_xiaozi@qq.com',
+        #            '通知：用户登录',
+        #            'mail/new_user',
+        #            user = session['user'])
         return render_template('index.html',
                                current_time = datetime.datetime.utcnow(),
                                user=session['user'])
@@ -47,6 +52,20 @@ def logout():
     return redirect(url_for('login'))
 
 
+# 发邮件
+def send_async_email(app, msg):
+    with app.app_context():
+        mail.send(msg)
+
+def send_email(to, subject, template, **kwargs):
+    msg = Message(app.config['FLASKY_MAIL_SUBJIECT_PREFIX'] + subject,
+                  sender=app.config['FLASKY_MAIL_SENDER'],
+                  recipients=[to])
+    msg.body = render_template(template + '.txt', **kwargs)
+    msg.html = render_template(template + '.html', **kwargs)
+    thr = Thread(target=send_async_email, args=[app, msg])
+    thr.start()
+    return thr
 
 
 
