@@ -19,3 +19,5 @@ MAIL_PASSWORD = 'b091880!'            # os.environ.get('MAIL_PASSWORD')
 FLASKY_MAIL_SUBJIECT_PREFIX = '[Flasky]'     # 邮件主题
 FLASKY_MAIL_SENDER = 'Flasky Admin <nx_xiaozi@163.com>'  #邮件发送者地址
 
+
+
