@@ -4,7 +4,7 @@ import os
 DEBUG = True
 CSRF_ENABLED = True
 SECRET_KEY = '***'
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:b091880@localhost/sflask?charset=utf8'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:***@localhost/sflask?charset=utf8'
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 
 basedir = os.path.abspath(os.path.dirname(__file__))
