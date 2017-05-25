@@ -1,4 +1,6 @@
 from app import db
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 
 class Role(db.Model):
@@ -20,13 +22,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, index=True)
     email = db.Column(db.String(64), unique=True)
-    password = db.Column(db.String(24), default='000000')
+    password = db.Column(db.String(64), default='000000')
     nickname = db.Column(db.String(48))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __repr__(self):
         return '<User %r>' % self.username
-
 
 
 # 删除和创建表
